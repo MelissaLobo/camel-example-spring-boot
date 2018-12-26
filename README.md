@@ -20,7 +20,7 @@ You can run this example using
 [Maven](https://maven.apache.org)<br/>
 [Spring](http://projects.spring.io/spring-framework)<br/>
 
-## Boas Praticas
+## Clean Code and good habits
 Inspirada em _GRASP_ e _S.O.L.I.D_ foram criadas algumas praticas fundamentais para uma boa legibilidade e facilidade de construcao de codigo em _Camel_ 
 
 ### Package and Graph
