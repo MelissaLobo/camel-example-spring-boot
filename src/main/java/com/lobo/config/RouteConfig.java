@@ -3,6 +3,7 @@ package com.lobo.config;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RouteConfig extends RouteBuilder {
+	
+	@Value("${server.port}")
+    String serverPort;
+    
+    @Value("${baeldung.api.path}")
+    String contextPath;
 
 	@Bean
 	public ServletRegistrationBean camelServletRegistrationBean() {
@@ -27,7 +34,10 @@ public class RouteConfig extends RouteBuilder {
 	@Override
 	public void configure() throws Exception {
 		restConfiguration()
+			.contextPath(contextPath) 
+		  	.port(serverPort)
 			.dataFormatProperty("prettyPrint", "true")
+			.apiContextRouteId("doc-api")
 			.component("servlet")
 			.bindingMode(RestBindingMode.json)
 			.apiContextPath("/api-doc")
